@@ -1,26 +1,3 @@
-# Manually installed
+Flask
 
-Flask==0.10.1
-
--e git://github.com/maebert/jrnl.git@2.0-rc1#egg=jrnl
-
-# Automatically installed
-
-cffi==1.1.2
-cryptography==0.9.3
-idna==2.0
-itsdangerous==0.24
-Jinja2==2.8
-keyring==5.4
-MarkupSafe==0.23
-parsedatetime==1.5
-passlib==1.6.5
-pyasn1==0.1.8
-pycparser==2.14
-python-dateutil==2.4.2
-pytz==2015.4
-pyxdg==0.25
-PyYAML==3.11
-six==1.9.0
-tzlocal==1.2
-Werkzeug==0.10.4
+-e git://github.com/dufferzafar/jrnl-maebert@2.0-rc1#egg=jrnl
