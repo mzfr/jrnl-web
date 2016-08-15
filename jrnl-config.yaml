@@ -1,0 +1,16 @@
+default_hour: 9
+default_minute: 0
+editor: vim
+encrypt: false
+highlight: true
+journals:
+  code:    /home/dufferzafar/dev/alpha/jrnl-web/_Help/journals/code.jrnl
+  idea:    /home/dufferzafar/dev/alpha/jrnl-web/_Help/journals/idea.jrnl
+  til:     /home/dufferzafar/dev/alpha/jrnl-web/_Help/journals/til.jrnl
+  work:    /home/dufferzafar/dev/alpha/jrnl-web/_Help/journals/work.jrnl
+  default: /home/dufferzafar/dev/alpha/jrnl-web/_Help/journals/life.jrnl
+linewrap: 79
+tagsymbols: '@'
+template: false
+timeformat: '%Y-%m-%d %H:%M'
+version: 2.0.0-rc1
