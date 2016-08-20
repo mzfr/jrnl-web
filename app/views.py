@@ -5,6 +5,7 @@ from flask import (
     request,
     Response,
     render_template,
+    redirect,
     url_for,
 )
 
@@ -18,7 +19,7 @@ api = Blueprint('api', __name__)
 
 @frontend.route('/')
 def react_root():
-    return render_template('react.html')
+    return redirect('/jrnl/idea')
 
 
 @frontend.route('/jrnl/<string:journal_name>')

@@ -1,7 +1,9 @@
 import re
 
-from flask import Flask
-from flask import jsonify
+from flask import (
+    jsonify,
+    Flask,
+)
 
 import exceptions as exc
 
