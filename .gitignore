@@ -1,3 +1,7 @@
+# Dependencies installed via Bower
+app/static/bower
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
