@@ -18,7 +18,7 @@ api = Blueprint('api', __name__)
 
 
 @frontend.route('/')
-def react_root():
+def index():
     return redirect('/jrnl/idea')
 
 
@@ -29,7 +29,8 @@ def frontend_root(journal_name='idea'):
         abort(404)
 
     entries = jutils.entries(journal, count='all')
-    return render_template('index.html', entries=entries)
+    return render_template('index.html', entries=entries,
+                           journal_name=journal_name)
 
 
 @api.route('/', endpoint='index')
@@ -60,8 +61,6 @@ def get_jrnl(name):
         strict=request.args.get('strict') == 'true',
         short=request.args.get('short') == 'true',
     )
-
-    print(filters['starred'])
 
     jrnl.filter(**filters)
 
