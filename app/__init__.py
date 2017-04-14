@@ -1,15 +1,9 @@
-import re
-
 from flask import (
     jsonify,
     Flask,
 )
 
 import exceptions as exc
-
-
-def re_sub(s, find, replace):
-    return re.sub(find, replace, s)
 
 
 def create_app():
@@ -21,8 +15,6 @@ def create_app():
 
     app.register_blueprint(frontend)
     app.register_blueprint(api, url_prefix='/api')
-
-    app.jinja_env.filters['re_sub'] = re_sub
 
     init_error_handlers(app)
 
