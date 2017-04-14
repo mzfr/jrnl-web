@@ -1,49 +1,27 @@
-import hashlib
 import re
+
 import markdown as markdown_lib
+from markdown.preprocessors import Preprocessor
+from markdown.extensions import Extension
+
+URL_RE = re.compile(r'((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+(:[0-9]+)?|'
+                       r'(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:/[\+~%/\.\w\-_]*)?\??'
+                       r'(?:[\-\+=&;%@\.\w_]*)#?(?:[\.!/\\\w]*))?)')
 
 
-def gfm(text):
-    """Processes Markdown according to GitHub Flavored Markdown spec."""
-    extractions = {}
+class URLify(Preprocessor):
+    def run(self, lines):
+        return [URL_RE.sub(r'<\1>', line) for line in lines]
 
-    def extract_pre_block(matchobj):
-        match = matchobj.group(0)
-        hashed_match = hashlib.md5(match.encode('utf-8')).hexdigest()
-        extractions[hashed_match] = match
-        result = "{gfm-extraction-%s}" % hashed_match
-        return result
 
-    def escape_underscore(matchobj):
-        match = matchobj.group(0)
-
-        if match.count('_') > 1:
-            return re.sub('_', '\_', match)
-        else:
-            return match
-
-    def newlines_to_brs(matchobj):
-        match = matchobj.group(0)
-        if re.search("\n{2}", match):
-            return match
-        else:
-            match = match.strip()
-            return match + "  \n"
-
-    def insert_pre_block(matchobj):
-        string = "\n\n" + extractions[matchobj.group(1)]
-        return string
-
-    text = re.sub("(?s)<pre>.*?<\/pre>", extract_pre_block, text)
-    text = re.sub("(^(?! {4}|\t)\w+_\w+_\w[\w_]*)", escape_underscore, text)
-    text = re.sub("(?m)^[\w\<][^\n]*\n+", newlines_to_brs, text)
-    text = re.sub("\{gfm-extraction-([0-9a-f]{32})\}", insert_pre_block, text)
-
-    return text
+class URLifyExtension(Extension):
+    def extendMarkdown(self, md, md_globals):
+        md.preprocessors.add('urlify', URLify(md), '_end')
 
 
 def markdown(text):
     """Processes GFM then converts it to HTML."""
-    text = gfm(text)
-    text = markdown_lib.markdown(text)
+    extensions = [URLifyExtension(), 'markdown.extensions.nl2br']
+
+    text = markdown_lib.markdown(text, extensions)
     return text
