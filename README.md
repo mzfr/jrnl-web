@@ -5,7 +5,7 @@ I use [jrnl](https://github.com/maebert/jrnl) to store a lot of stuff. This is m
 
 A poc is [live here](http://167.88.124.249/~dufferzafar/jrnl/idea.html).
 
-This assumes that your jrnl entries are written in the markdown format.
+![Screenshot](screenshot.png)
 
 ## todo
 
