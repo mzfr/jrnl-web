@@ -97,23 +97,23 @@
     </div>
 
     <div class="card-columns">
-        {% for entry in entries %}
-        <div class="card {% if entry['starred'] %}starred{% endif %}">
+        {% for e in entries %}
+        <div class="card {% if e['starred'] %}starred{% endif %}">
           <div class="card-block">
 
             <span class="card-title">
-              <a class="anchor" name="{{ entry['title'] }}"
-              href="#{{ entry['title'] }}">{{ entry['title'] }}</a>
+              <a class="anchor" name="{{ e['date'] }}-{{ e['slug'] }}"
+              href="#{{ e['date'] }}-{{ e['slug'] }}">{{ e['title'] }}</a>
             </span>
 
             <p class="card-text">
-              {{ entry['html'] | safe }}
+              {{ e['html'] | safe }}
             </p>
 
             <p class="card-text">
-              <small id="time" class="text-muted" datetime="{{ entry['date'] }} {{ entry['time'] }}"
-                    title="{{ entry['date'] }} {{ entry['time'] }}">
-                    {{ entry['date'] }} {{ entry['time'] }}
+              <small id="time" class="text-muted" datetime="{{ e['date'] }} {{ e['time'] }}"
+                    title="{{ e['date'] }} {{ e['time'] }}">
+                    {{ e['date'] }} {{ e['time'] }}
               </small>
             </p>
 

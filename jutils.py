@@ -6,6 +6,8 @@ from jrnl import (
 
 import gfm
 
+import slugify
+
 main_config = util.load_config('jrnl-config.yaml')
 
 
@@ -42,6 +44,7 @@ def entries(journal, count=None):
         e = exporter.entry_to_dict(entry)
         e['markdown'] = e['body']
         e['html'] = gfm.markdown(e['body'])
+        e['slug'] = slugify.slugify(e['title'])
         del e['body']
         rv.append(e)
 
