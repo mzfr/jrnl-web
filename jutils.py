@@ -40,7 +40,9 @@ def entries(journal, count=None):
     rv = []
     for entry in entries:
         e = exporter.entry_to_dict(entry)
-        e['body'] = gfm.markdown(e['body'])
+        e['markdown'] = e['body']
+        e['html'] = gfm.markdown(e['body'])
+        del e['body']
         rv.append(e)
 
     return rv
