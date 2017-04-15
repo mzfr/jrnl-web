@@ -1,0 +1,23 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+			"folder_exclude_patterns":
+			[
+				"_Help/material-ui",
+				"_Help/jrnl",
+				"app/static/bower"
+			]
+		}
+	],
+	"settings":
+	{
+		"python_interpreter": "env/bin/python",
+		"pep257_ignore":
+		[ "D100", "D200", "D208", "D209", "D202", "D203", "D205", "D211",
+		  "D102", "D101", "D103", "D400", "D401"],
+		"pep8_ignore":
+		["E501", "E251"]
+	}
+}
