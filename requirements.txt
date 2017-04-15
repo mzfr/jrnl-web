@@ -1,3 +1,6 @@
+Markdown==2.6.6
+python-slugify==1.2.4
+
 Flask
 
 -e git://github.com/dufferzafar/jrnl-maebert@2.0-rc1#egg=jrnl
