@@ -8,23 +8,122 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="ideas - big and small.">
   <meta name="author" content="Shadab Zafar">
-  <link rel="shortcut icon" href="img/favicon.ico">
-  <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+  <!-- <link rel="shortcut icon" href="img/favicon.ico"> -->
+
+  <!-- Mobile support -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap  -->
+  <link href="{{ url_for('static', filename='bower/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+  {# <script src="{{ url_for('static', filename='bower/jquery/dist/jquery.min.js') }}"></script> #}
+  {# <script src="{{ url_for('static', filename='bower/bootstrap/dist/js/bootstrap.min.js') }}"></script> #}
+
+  <style>
+
+    body {
+       background-color: #00BCD4;
+    }
+
+    #root {
+      margin-top: 35px;
+    }
+
+    span.card-title {
+      font-size: 17px;
+      font-weight: 800;
+      line-height: normal;
+    }
+
+    h1, h2 {
+      font-size: 20px;
+    }
+
+    @media (min-width: 1600px) {
+      .container {
+          max-width: 1500px;
+      }
+      .card-columns {
+        column-count: 4;
+      }
+    }
+
+    .card {
+      overflow: auto;
+      overflow-y: hidden;
+    }
+
+    .card.starred {
+      background-color: #FFFFF0;
+      border: 5px solid #FFD700;
+    }
+
+     /*Search Input & Button*/
+    #search-input {
+      margin-bottom: 25px;
+    }
+
+    .input-group-btn {
+      padding-left: 10px;
+      vertical-align: top !important;
+    }
+
+    #time {
+      float: right;
+      margin-top: 15px;
+    }
+
+    a.anchor {
+      color: #000;
+    }
+
+    a.anchor:hover {
+      color: blue;
+      text-decoration: none;
+    }
+
+  </style>
+
 </head>
 
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="span10 content offset2">
-        {% for entry in entries %}
-          <div class="block">
-            <h2>{{ entry['title'] | re_sub("^#", '') }}</h2>
-            <p>{{ entry['time'] }}, {{ entry['date'] }}</p>
-            <p>{{ entry['body'] | safe }}</p>
-          </div>
-        {% endfor %}
-      </div>
+  <div id="root" class="container">
+
+    <div class="input-group">
+      <input id="search-input" placeholder="Search Journal" type="text" class="form-control" name="q"
+      tabindex="1" autocapitalize="off" {# autofocus="" #} autocomplete="off" spellcheck="false">
+
+      <span class="input-group-btn">
+        <button class="btn btn-primary">Search</button>
+      </span>
     </div>
+
+    <div class="card-columns">
+        {% for entry in entries %}
+        <div class="card {% if entry['starred'] %}starred{% endif %}">
+          <div class="card-block">
+
+            <span class="card-title">
+              <a class="anchor" name="{{ entry['title'] }}"
+              href="#{{ entry['title'] }}">{{ entry['title'] }}</a>
+            </span>
+
+            <p class="card-text">
+              {{ entry['body'] | safe }}
+            </p>
+
+            <p class="card-text">
+              <small id="time" class="text-muted" datetime="{{ entry['date'] }} {{ entry['time'] }}"
+                    title="{{ entry['date'] }} {{ entry['time'] }}">
+                    {{ entry['date'] }} {{ entry['time'] }}
+              </small>
+            </p>
+
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+
   </div>
 </body>
 
