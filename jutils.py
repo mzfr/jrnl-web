@@ -32,10 +32,11 @@ def to_json(journal):
 
 
 # TODO: Better name & organization of this module!
-def entries(journal, count=10):
+def entries(journal, count=None):
     exporter = plugins.get_exporter('json')
 
-    if count == 'all':
+    # Return all entries
+    if not count:
         entries = reversed(journal.entries)
     else:
         entries = list(reversed(journal.entries))[:count]

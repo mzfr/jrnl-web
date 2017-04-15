@@ -28,7 +28,7 @@ def frontend_root(jrnl_name='idea'):
     if jrnl is None:
         abort(404)
 
-    entries = jutils.entries(journal, count='all')
+    entries = jutils.entries(jrnl)
     return render_template('index.html', entries=entries,
                            jrnl_name=jrnl_name)
 
