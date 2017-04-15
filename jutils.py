@@ -27,10 +27,6 @@ def search_entry(journal, timestamp):
     return None
 
 
-def to_json(journal):
-    return plugins.get_exporter('json').export_journal(journal)
-
-
 # TODO: Better name & organization of this module!
 def entries(journal, count=None):
     exporter = plugins.get_exporter('json')

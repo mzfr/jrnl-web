@@ -1,3 +1,5 @@
+import json
+
 from flask import (
     abort,
     Blueprint,
@@ -65,7 +67,7 @@ def get_jrnl(name):
     jrnl.filter(**filters)
 
     return Response(
-        jutils.to_json(jrnl),
+        json.dumps(jutils.entries(jrnl)),
         mimetype='application/json'
     )
 
