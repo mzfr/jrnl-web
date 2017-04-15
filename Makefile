@@ -1,4 +1,8 @@
-default: build
+default: run
+
+.PHONY: run
+run:
+	@env/bin/python -m app
 
 .PHONY: build
 build:
