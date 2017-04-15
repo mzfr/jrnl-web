@@ -22,15 +22,15 @@ def index():
     return redirect('/jrnl/idea')
 
 
-@frontend.route('/jrnl/<string:journal_name>')
-def frontend_root(journal_name='idea'):
-    journal = jutils.load(journal_name or 'idea')
-    if journal is None:
+@frontend.route('/jrnl/<string:jrnl_name>/')
+def frontend_root(jrnl_name='idea'):
+    jrnl = jutils.load(jrnl_name or 'idea')
+    if jrnl is None:
         abort(404)
 
     entries = jutils.entries(journal, count='all')
     return render_template('index.html', entries=entries,
-                           journal_name=journal_name)
+                           jrnl_name=jrnl_name)
 
 
 @api.route('/', endpoint='index')
