@@ -2,7 +2,7 @@ default: run
 
 .PHONY: run
 run:
-	@env/bin/python -m app
+	python -m app
 
 push: build
 	rsync -avz -e ssh build/ dufferzafar@167.88.124.249:/home/dufferzafar/www/jrnl

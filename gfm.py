@@ -1,8 +1,8 @@
 import re
 
 import markdown as markdown_lib
-from markdown.preprocessors import Preprocessor
 from markdown.extensions import Extension
+from markdown.preprocessors import Preprocessor
 
 URL_RE = re.compile(r'((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+(:[0-9]+)?|'
                        r'(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:/[\+~%/\.\w\-_]*)?\??'

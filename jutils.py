@@ -1,25 +1,43 @@
-from jrnl import (
-    Journal,
-    plugins,
-    util,
-)
+import os
+
+import slugify
+import yaml
+from jrnl import Journal, exporters, util
 
 import gfm
 
-import slugify
 
-main_config = util.load_config('jrnl-config.yaml')
+def load_config(filename):
+    """Load config file
 
+    Arguments:
+        filename {str} -- Name of the configuration file.
+    """
+    if os.path.isfile(filename):
+        with open(filename, 'r') as f:
+            try:
+                journal = yaml.safe_load(f)
+            except yaml.YAMLError as exc:
+                print(exc)
+        return journal
+
+    else:
+        print("[!] The config doesn't exists")
+
+CONFIG = load_config('jrnl-config.yaml')
 
 def ls():
-    return main_config['journals'].keys()
+    """List all the jorunals that are available
+    """
+    return CONFIG['journals'].keys()
 
 
 def load(journal_name):
-    if journal_name not in main_config['journals']:
+    if journal_name not in CONFIG['journals']:
         return None
-    config = util.scope_config(main_config, journal_name)
-    return Journal.open_journal(journal_name, config, legacy=True)
+    return CONFIG['journals'][journal_name]
+    # config = load_config(CONFIG)
+    # return Journal.open_journal(journal_name, config, legacy=True)
 
 
 def search_entry(journal, timestamp):
@@ -31,8 +49,7 @@ def search_entry(journal, timestamp):
 
 # TODO: Better name & organization of this module!
 def entries(journal, count=None):
-    exporter = plugins.get_exporter('json')
-
+    """Send back dictionary"""
     # Return all entries
     if not count:
         entries = reversed(journal.entries)
@@ -41,7 +58,7 @@ def entries(journal, count=None):
 
     rv = []
     for entry in entries:
-        e = exporter.entry_to_dict(entry)
+        e = exporters.to_json(entry)
         e['markdown'] = e['body']
         e['html'] = gfm.markdown(e['body'])
         e['slug'] = slugify.slugify(e['title'])

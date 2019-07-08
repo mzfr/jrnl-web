@@ -4,11 +4,7 @@ editor: vim
 encrypt: false
 highlight: true
 journals:
-  code:    /mnt/Data/Documents/Journal/code.jrnl
-  idea:    /mnt/Data/Documents/Journal/idea.jrnl
-  til:     /mnt/Data/Documents/Journal/til.jrnl
-  work:    /mnt/Data/Documents/Journal/work.jrnl
-  default: /mnt/Data/Documents/Journal/life.jrnl
+  test: /run/media/mzfr/Data/Journal/test.jrnl
 linewrap: 79
 tagsymbols: '@'
 template: false
