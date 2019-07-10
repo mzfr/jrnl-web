@@ -1,0 +1,83 @@
+
+
+    body {
+      background-color: #00BCD4;
+   }
+
+   #root {
+     margin-top: 35px;
+   }
+   
+
+   span.card-title {
+     font-size: 17px;
+     font-weight: 800;
+     line-height: normal;
+   }
+
+   h1, h2 {
+     font-size: 20px;
+   }
+
+   @media (min-width: 1600px) {
+     .container {
+         white-space: 100%;
+         margin: 0 auto;
+         max-width: 1500px;
+     }
+     .card-columns {
+       column-count: 4;
+     }
+   }
+
+   .card {
+     padding-left: 10px;
+     overflow: auto;
+     overflow-y: hidden;
+     background: white;
+     font-family: 'Aclonica';
+     border-radius: .4em;
+     margin: 1em auto 1em auto;
+     min-height: 30vh;
+     position: relative;
+   }
+
+   .card.starred {
+     background-color: #FFFFF0;
+     border: 5px solid #FFD700;
+   }
+
+    /*Search Input & Button*/
+   #search-input {
+     margin-bottom: 25px;
+   }
+
+   .input-group-btn {
+     padding-left: 10px;
+     vertical-align: top !important;
+   }
+
+   #time {
+     position:absolute;
+     bottom:0;
+     right:0;
+     float: right;
+     margin-top: 15px;
+     padding-right: 10px;
+     padding-bottom: 10px;
+   }
+
+   a.anchor {
+     color: #000;
+   }
+
+   a.anchor:hover {
+     color: blue;
+     text-decoration: none;
+   }
+
+text-muted {
+ position:absolute;
+   bottom:0;
+   right:0;
+}
