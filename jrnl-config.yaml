@@ -4,7 +4,7 @@ editor: vim
 encrypt: false
 highlight: true
 journals:
-  test: /home/robin/Downloads/hekko.jrnl
+  test: /run/media/mzfr/Data/Journal/test.jrnl
 linewrap: 79
 tagsymbols: '@'
 template: false
