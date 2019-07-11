@@ -5,6 +5,7 @@ from slugify import slugify
 
 ALPHA = string.ascii_letters
 TIME = r'(2[0-3]|[01]?[0-9]):([0-5]?[0-9])'
+DATE = r"\d{4}-\d{2}-\d{2}"
 
 
 def journal(filepath):
@@ -28,7 +29,7 @@ def journal(filepath):
 
     for record in records:
         e = dict()
-        e['date'] = record[:10]
+        e['date'] = re.search(DATE, record).group()
         e['time'] = re.search(TIME, record).group()
         if "*" in record:
             e['starred'] = True
@@ -53,11 +54,14 @@ def body_title(entry: str):
         split = entry.split("\n")
     else:
         split = entry.split()
-    title = split[0]
-    split.pop(0)
-    body = " ".join(split)
 
-    return title, body
+    if split:
+        title = split[0]
+        split.pop(0)
+        body = " ".join(split)
+    else:
+        title, body = "",""
+    return title, str(body)
 
 
 def sanitize(records: list):
@@ -82,7 +86,7 @@ def sanitize(records: list):
             if ind == 0:
                 continue
             else:
-                if r[0].isdigit():
+                if re.match(DATE, r[:10]):
                     continue
                 else:
                     records[ind-1] = records[ind-1] + " \n " + r

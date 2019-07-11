@@ -5,6 +5,7 @@ encrypt: false
 highlight: true
 journals:
   test: /run/media/mzfr/Data/Journal/test.jrnl
+  projects: /run/media/mzfr/Data/Journal/projects.jrnl
 linewrap: 79
 tagsymbols: '@'
 template: false
