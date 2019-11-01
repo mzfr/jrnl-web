@@ -3,7 +3,7 @@ import json
 from flask import (Response, abort, jsonify, redirect,
                    render_template, request, url_for)
 
-import jutils
+from app.utils import load, load_config
 
 from app import app
 from app.parser import journal
@@ -19,7 +19,7 @@ def index():
 
 @app.route('/jrnl/<string:jrnl_name>/')
 def frontend_root(jrnl_name):
-    jrnl = jutils.load(jrnl_name)
+    jrnl = load(jrnl_name)
     if jrnl is None:
         abort(404)
 

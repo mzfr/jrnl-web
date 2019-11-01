@@ -4,7 +4,7 @@ editor: vim
 encrypt: false
 highlight: true
 journals:
-  test: /run/media/mzfr/Data/Journal/test.jrnl
+  test: E:\Project\jrnl-web\test.jrnl
   projects: /run/media/mzfr/Data/Journal/projects.jrnl
 linewrap: 79
 tagsymbols: '@'
