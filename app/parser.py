@@ -38,7 +38,9 @@ def journal(filepath):
 
         e['title'], e['body'] = body_title(record)
         #https://stackoverflow.com/questions/427102/what-is-a-slug-in-django
-        e['slug'] = slugify(e['title'])
+        print(e['title'])
+        # e['slug'] = slugify(e['title'])
+        e['slug'] = e['title']
         entries.append(e)
     return entries
 

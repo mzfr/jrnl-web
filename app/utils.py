@@ -1,8 +1,8 @@
 import os
 
-import slugify
+# import slugify
 import yaml
-from jrnl import Journal, util
+# from jrnl import Journal, util
 
 
 
